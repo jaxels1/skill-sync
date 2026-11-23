@@ -55,9 +55,10 @@ node scripts/sync-skills.mjs --diff tactile-ui
 
 ## Safety Guarantees
 
+- **Pre-pull security gate**: Automatically scans upstream diffs *before* pulling and blocks any git skill adding new external URLs, downloaders (`curl`/`wget`/`iwr`), shell execution, hook files, or env/credential reads (`BLOCKED-SECURITY`) until reviewed and explicitly approved with `--allow-risky`.
 - **Fast-forward only (`--ff-only`)**: Never force-resets or auto-merges diverged history.
-- **Dirty-tree protection**: Automatically skips any skill repo with uncommitted local edits.
-- **Diff transparency**: Summarizes upstream commits and modified files before/after pulling so agent instructions never change silently.
+- **Dirty-tree protection**: Automatically skips any skill repo with uncommitted local edits or detached `HEAD`.
+- **Symlink deduplication**: Resolves canonical paths via `fs.realpathSync` so cross-agent symlinks (e.g. `~/.claude/skills/foo → ~/.agents/skills/foo`) are checked and updated once without duplicates.
 
 ## Structure
 
