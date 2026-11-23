@@ -6,6 +6,8 @@
 
 **Skill Sync (`skill-sync`)** is an open-source AI agent skill that audits, diffs, and safely updates all of your installed `SKILL.md` skills across Antigravity, Claude Code, OpenAI Codex, Cursor, Gemini CLI, and `skills.sh` (`npx skills`).
 
+![skill-sync demo](./assets/demo.gif)
+
 ## Quick Install
 
 Install via the open agent skills CLI (`skills.sh`):

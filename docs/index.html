@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Skill Sync (skill-sync) — Auto-Update & Security Gate for AI Agent Skills</title>
+    <meta
+      name="description"
+      content="Skill Sync (skill-sync) is an open-source SKILL.md that audits, diffs, security-scans, and safely updates installed AI agent skills across Antigravity, Claude Code, OpenAI Codex, Cursor, Gemini CLI, and skills.sh."
+    />
+    <link rel="canonical" href="https://jaxels1.github.io/skill-sync/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Skill Sync — Auto-Update AI Agent Skills Safely" />
+    <meta
+      property="og:description"
+      content="Audit, diff, pre-pull security scan, and fast-forward update all your SKILL.md repos and skills.sh installs with /update all and /updates list."
+    />
+    <meta property="og:url" content="https://jaxels1.github.io/skill-sync/" />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/jaxels1/skill-sync/main/assets/demo.gif"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "skill-sync",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "macOS, Windows, Linux",
+        "url": "https://jaxels1.github.io/skill-sync/",
+        "codeRepository": "https://github.com/jaxels1/skill-sync",
+        "description": "Zero-dependency AI agent skill that audits, diffs, security-scans, and safely updates installed SKILL.md repositories and skills.sh packages across Antigravity, Claude Code, Codex, Cursor, and Gemini CLI."
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I automatically update all my AI agent skills?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Install skill-sync via npx skills add jaxels1/skill-sync, then run /updates list to review pending updates or /update all to safely fast-forward clean git skill repos and update skills.sh installs."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does skill-sync protect against malicious skill updates?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Before running git pull --ff-only, skill-sync scans upstream diffs for newly added external URLs, curl/wget downloaders, shell execution, hooks, and credential reads, blocking risky pulls until reviewed and explicitly approved with --allow-risky."
+            }
+          }
+        ]
+      }
+    </script>
+    <style>
+      :root {
+        --bone: #f6f2ea;
+        --forest: #0d2b22;
+        --obsidian: #050a08;
+        --emerald: #10b981;
+        --border: rgba(13, 43, 34, 0.14);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bone);
+        color: var(--forest);
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+        line-height: 1.55;
+      }
+      .wrap { max-width: 920px; margin: 0 auto; padding: 56px 24px 88px; }
+      header {
+        display: flex; align-items: center; justify-content: space-between; gap: 16px;
+        padding-bottom: 36px; border-bottom: 1px solid var(--border);
+      }
+      .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 18px; }
+      .cta {
+        display: inline-block; padding: 10px 18px; border-radius: 999px;
+        background: var(--forest); color: var(--bone); text-decoration: none; font-weight: 600; font-size: 14px;
+      }
+      h1 {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(34px, 5vw, 52px); line-height: 1.06; letter-spacing: -0.03em; margin: 40px 0 18px;
+      }
+      .lead { font-size: 19px; max-width: 68ch; color: rgba(13, 43, 34, 0.84); margin: 0 0 28px; }
+      pre { background: var(--obsidian); color: var(--bone); padding: 18px 20px; border-radius: 14px; overflow-x: auto; font-size: 14px; }
+      .demo { margin: 34px 0; border-radius: 18px; overflow: hidden; border: 1px solid var(--border); background: var(--obsidian); }
+      .demo img { display: block; width: 100%; height: auto; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 32px 0; }
+      .card { padding: 20px; border-radius: 14px; border: 1px solid var(--border); background: rgba(255,255,255,0.55); }
+      .card h3 { margin: 0 0 8px; font-size: 17px; }
+      .card p { margin: 0; font-size: 14.5px; color: rgba(13, 43, 34, 0.8); }
+      h2 { font-family: Georgia, "Times New Roman", serif; font-size: 28px; margin: 48px 0 16px; }
+      footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 14px; color: rgba(13, 43, 34, 0.72); }
+      footer a { color: var(--forest); }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <header>
+        <div class="brand">
+          <img src="https://raw.githubusercontent.com/jaxels1/skill-sync/main/assets/logo.svg" alt="skill-sync logo" width="36" height="36" />
+          <span>skill-sync</span>
+        </div>
+        <a class="cta" href="https://github.com/jaxels1/skill-sync">View on GitHub →</a>
+      </header>
+
+      <h1>Audit, security-scan &amp; auto-update all your AI agent skills.</h1>
+      <p class="lead">
+        <strong>Skill Sync (<code>skill-sync</code>)</strong> keeps every installed
+        <code>SKILL.md</code> repository and <code>skills.sh</code> package up to date across
+        Antigravity, Claude Code, OpenAI Codex, Cursor, and Gemini CLI—with a pre-pull
+        diff security gate, dirty-tree protection, and symlink deduplication.
+      </p>
+
+      <pre><code>npx skills add jaxels1/skill-sync</code></pre>
+
+      <div class="demo">
+        <img src="https://raw.githubusercontent.com/jaxels1/skill-sync/main/assets/demo.gif" alt="Skill Sync demo showing /updates list, pre-pull security gate, /update all, and six commands" />
+      </div>
+
+      <h2>Commands</h2>
+      <div class="grid">
+        <div class="card"><h3><code>/updates list</code></h3><p>Dry-run scan listing every outdated git or <code>skills.sh</code> skill and asking what to update.</p></div>
+        <div class="card"><h3><code>/update all</code></h3><p>Security-gated fast-forward update for all clean repos and <code>npx skills</code> installs.</p></div>
+        <div class="card"><h3><code>/updates diff &lt;name&gt;</code></h3><p>Inspect upstream commits, security flags, and full diffs before pulling.</p></div>
+        <div class="card"><h3><code>/updates status</code></h3><p>Full symlink-deduplicated inventory audit across all agent directories.</p></div>
+      </div>
+
+      <footer>
+        Open-source on <a href="https://github.com/jaxels1/skill-sync">github.com/jaxels1/skill-sync</a>.
+      </footer>
+    </main>
+  </body>
+</html>
