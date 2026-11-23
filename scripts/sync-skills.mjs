@@ -25,15 +25,24 @@ const customDirs = [];
 const targetSkills = [];
 let diffTarget = null;
 
+const SAFE_SKILL_NAME = /^[a-zA-Z0-9._-]+$/;
+function assertSafeSkillName(flag, raw) {
+  if (!SAFE_SKILL_NAME.test(raw) || raw.includes("..")) {
+    console.error(`Invalid ${flag} value "${raw}". Skill names may only contain letters, digits, '.', '_' and '-'.`);
+    process.exit(2);
+  }
+  return raw.toLowerCase();
+}
+
 for (let i = 0; i < args.length; i++) {
   if (args[i] === "--dir" && args[i + 1]) {
     customDirs.push(path.resolve(args[i + 1]));
     i++;
   } else if (args[i] === "--skill" && args[i + 1]) {
-    targetSkills.push(args[i + 1].toLowerCase());
+    targetSkills.push(assertSafeSkillName("--skill", args[i + 1]));
     i++;
   } else if (args[i] === "--diff" && args[i + 1]) {
-    diffTarget = args[i + 1].toLowerCase();
+    diffTarget = assertSafeSkillName("--diff", args[i + 1]);
     i++;
   }
 }

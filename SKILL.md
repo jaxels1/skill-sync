@@ -83,6 +83,7 @@ Project-local (`$PWD`): `./.agents/skills`, `./.claude/skills`, `./.gemini/skill
 
 ## Safety Guarantees
 
-- **Pre-pull security gate**: Blocks automatic `git pull` when upstream diffs introduce new external URLs, downloaders, shell execution, hook files, or credential/env-var reads unless `--allow-risky` is explicitly passed after user review.
+- **Pre-pull security gate (git repos)**: Blocks automatic `git pull` when upstream diffs introduce new external URLs, downloaders, shell execution, hook files, or credential/env-var reads unless `--allow-risky` is explicitly passed after user review. *(Note: `npx skills update -y` updates `skills.sh` packages directly without a pre-pull diff scan; install skills via `git clone` if you want every update gated by the diff scanner.)*
+- **Input validation**: `--skill` and `--diff` names are strictly validated against `/^[a-zA-Z0-9._-]+$/` (disallowing shell metacharacters and `..`).
 - **Fast-forward only (`--ff-only`)**: Never force-resets or auto-merges diverged git history.
 - **Dirty-tree protection**: Automatically skips repos with uncommitted local edits, detached `HEAD`, or no upstream tracking branch.
