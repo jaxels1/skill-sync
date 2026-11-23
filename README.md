@@ -1,3 +1,7 @@
+<p align="left">
+  <img src="./assets/logo.svg" alt="skill-sync logo" width="64" height="64" />
+</p>
+
 # Skill Sync (`skill-sync`) — Auto-Update Agent Skill for `SKILL.md` & `skills.sh`
 
 **Skill Sync (`skill-sync`)** is an open-source AI agent skill that audits, diffs, and safely updates all of your installed `SKILL.md` skills across Antigravity, Claude Code, OpenAI Codex, Cursor, Gemini CLI, and `skills.sh` (`npx skills`).
@@ -61,6 +65,8 @@ node scripts/sync-skills.mjs --diff tactile-ui
 skill-sync/
 ├── SKILL.md
 ├── README.md
+├── assets/
+│   └── logo.svg
 └── scripts/
     └── sync-skills.mjs
 ```
